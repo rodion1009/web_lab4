@@ -23,10 +23,13 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Writer writer = response.getWriter();
-		writer.write("<html><head><title>Registration</title></head>"
-				+ 	 "<body><form name=\"reg\" align=\"middle\" method=\"post\" action=\"MainServlet\"><b>Please, enter new login and password</b><br>"
-				+    "<b>Login</b><input type=\"text\" name=\"login\"><br> <b>Password</b><input type=\"text\" name=\"password\"><br><input type=\"submit\" value=\"Send\"></body></html>");
+		if (request.getSession().getAttribute("logged_in") != null) {
+			//отправлять на залогиненную страницу
+			//request.getRequestDispatcher("/logged_in.jsp").forward(request, response);
+			getServletConfig().getServletContext().getRequestDispatcher("/logged_in.jsp").forward(request, response);
+		} else {
+			getServletConfig().getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -41,8 +44,7 @@ public class MainServlet extends HttpServlet {
 		writer.write(login + "\n" + password + "\n");
 		writer.close();
 		
-		Writer outWriter = response.getWriter();
-		outWriter.write("<html><h1>User has been registrated</h1><br><a href=\"AuthentificationServlet\">Sing in your account</a></html>");
+		getServletConfig().getServletContext().getRequestDispatcher("/regComplete.jsp").forward(request, response);
 	}
 
 }

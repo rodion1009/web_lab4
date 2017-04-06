@@ -23,9 +23,12 @@ public class AuthentificationServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Writer writer = response.getWriter();
-		writer.write("<html><head><title>Authentification</title></head>"
-				+ 	 "<body><form name=\"reg\" align=\"middle\" method=\"post\" action=\"AuthentificationServlet\"><b>Sign in</b><br>"
-				+    "<b>Login</b><input type=\"text\" name=\"login\"><br> <b>Password</b><input type=\"text\" name=\"password\"><br><input type=\"submit\" value=\"Send\"></body></html>");
+		Object attr = request.getSession(true).getAttribute("logged_in");
+		if (attr != null ? (boolean)attr : false) {
+			writer.write("<html>Ты уже был залогинен!</html>");
+		} else {
+			getServletConfig().getServletContext().getRequestDispatcher("/authentification.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -48,7 +51,9 @@ public class AuthentificationServlet extends HttpServlet {
 		Writer writer = response.getWriter();
 		
 		if(loginFromForm.equals(loginFromFile) && passwordFromForm.equals(passwordFromFile)) {
-			writer.write("<html><h1>You are succesfully signed in<h1><br><a href=\"MainServlet\">Back to registration</a></html>");
+			//request.setAttribute("logged_in", true); //добавить в сессию информацию о том, что пользователь уже залогинен
+			request.getSession().setAttribute("logged_in", true);
+			getServletConfig().getServletContext().getRequestDispatcher("/logged_in.jsp").forward(request, response);
 		} else {
 			writer.write("<html><h1>Wrong login or password<h1><br><a href=\"AuthentificationServlet\">Try again</a></html>");
 		}
