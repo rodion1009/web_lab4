@@ -22,13 +22,7 @@ public class AuthentificationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Writer writer = response.getWriter();
-		Object attr = request.getSession(true).getAttribute("logged_in");
-		if (attr != null ? (boolean)attr : false) {
-			writer.write("<html>Ты уже был залогинен!</html>");
-		} else {
 			getServletConfig().getServletContext().getRequestDispatcher("/authentification.jsp").forward(request, response);
-		}
 	}
 
 	/**
@@ -51,9 +45,13 @@ public class AuthentificationServlet extends HttpServlet {
 		Writer writer = response.getWriter();
 		
 		if(loginFromForm.equals(loginFromFile) && passwordFromForm.equals(passwordFromFile)) {
-			//request.setAttribute("logged_in", true); //добавить в сессию информацию о том, что пользователь уже залогинен
-			request.getSession().setAttribute("logged_in", true);
-			getServletConfig().getServletContext().getRequestDispatcher("/logged_in.jsp").forward(request, response);
+			User user = new User();
+			user.logged_in = true;
+			user.type = User.Type.common; //Пока нет возможности выбирать
+			
+			request.getSession().setAttribute("user", user); //добавить в сессию информацию о том, что пользователь уже залогинен
+			//getServletConfig().getServletContext().getRequestDispatcher("/SiteContentServlet").forward(request, response);
+			response.sendRedirect("/Lab/SiteContentServlet");
 		} else {
 			writer.write("<html><h1>Wrong login or password<h1><br><a href=\"AuthentificationServlet\">Try again</a></html>");
 		}

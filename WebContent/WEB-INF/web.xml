@@ -10,15 +10,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
- <!--    <filter>
-  	<filter-name>SequrityFilter</filter-name>
-  	<filter-class>SequrityFilter</filter-class>
-  </filter>
-  <filter-mapping>
-  	<filter-name>SequrityFilter</filter-name>
-  	<url-pattern>/secure/*</url-pattern>
-  </filter-mapping> -->
-  
   <servlet>
     <description></description>
     <display-name>MainServlet</display-name>
@@ -29,6 +20,7 @@
     <servlet-name>MainServlet</servlet-name>
     <url-pattern>/MainServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>AuthentificationServlet</display-name>
@@ -39,4 +31,35 @@
     <servlet-name>AuthentificationServlet</servlet-name>
     <url-pattern>/AuthentificationServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>SiteContentServlet</display-name>
+    <servlet-name>SiteContentServlet</servlet-name>
+    <servlet-class>SiteContentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SiteContentServlet</servlet-name>
+    <url-pattern>/SiteContentServlet</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+  	<filter-name>SecurityFilter</filter-name>
+	<filter-class>SecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>SecurityFilter</filter-name>
+	<url-pattern>/SiteContentServlet</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+  	<filter-name>AuthFilter</filter-name>
+	<filter-class>AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+	<filter-name>AuthFilter</filter-name>
+	<url-pattern>/MainServlet</url-pattern>
+	<url-pattern>/AuthentificationServlet</url-pattern>
+  </filter-mapping>
+  
 </web-app>
