@@ -1,10 +1,12 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +37,15 @@ public class SiteContentServlet extends HttpServlet {
 		response.getWriter().write("<html>Now I only can show this text<br></html>");
 		Object typeAttr = request.getAttribute("type");
 		String type;
-		LinkedList<User> users = getUsers();
+		ArrayList<User> users = getUsers();
+		
+		System.out.println("Вывод в doGet(): ");
+		for (int i = 0; i < users.size(); i++) {
+			System.out.println(users.get(i).login);
+			System.out.println(users.get(i).password);
+			System.out.println(users.get(i).type);
+		}
+		
 		if (users != null) {
 			request.getSession().setAttribute("users", users);
 		}
@@ -60,30 +70,37 @@ public class SiteContentServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private LinkedList<User> getUsers() throws IOException {
+	private ArrayList<User> getUsers() throws IOException {
 		File file = new File("/Users/rodion/Documents/workspace/Lab/data.txt");
 		FileReader r;
 		BufferedReader reader;
-		LinkedList<User> users = new LinkedList<User>();
+		ArrayList<User> users = new ArrayList<User>();
 		
 		r = new FileReader(file);
 		reader = new BufferedReader(r);
 		
 		User user = new User();
 		
-		while ((user.login = reader.readLine()) != null) {
-			try {
-				user.login = reader.readLine();
-				user.password = reader.readLine();
-				user.type = reader.readLine();
-			} catch (IOException e) {
-				return null;
-			}
+		List<String> strs = Files.readAllLines(Paths.get("/Users/rodion/Documents/workspace/Lab/data.txt"));
+		
+		System.out.println("Вывод в getUsers(): ");
+		for (int i = 0; i < strs.size(); i += 3) {
+			user.login = strs.get(i);
+			user.password = strs.get(i+1);
+			user.type = strs.get(i+2);
+
 			users.add(user);
 		}
 		
 		reader.close();
 		r.close();
+		
+		System.out.println("Вывод в getUsers(): ");
+		for (int i = 0; i < users.size(); i++) {
+			System.out.println(users.get(i).login);
+			System.out.println(users.get(i).password);
+			System.out.println(users.get(i).type);
+		}
 		
 		return users;
 	}
