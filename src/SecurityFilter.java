@@ -8,6 +8,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import ru.mirea.web.*;
+
 public class SecurityFilter implements Filter {
 
 	@Override
@@ -21,7 +23,7 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)req;
 		User user = (User)request.getSession().getAttribute("user");
 		if (user != null && user.logged_in) {
-			request.setAttribute("type", user.type.toString());
+			request.setAttribute("type", user.type);
 		}
 		chain.doFilter((ServletRequest)request, resp);
 	}

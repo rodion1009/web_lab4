@@ -1,4 +1,5 @@
 import java.io.IOException;
+import ru.mirea.web.*;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -19,7 +20,7 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-		System.out.println("AuthFilter запустился");
+		//System.out.println("AuthFilter запустился");
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession session = request.getSession(true);
 		Object userAttr = session.getAttribute("user");
@@ -28,7 +29,7 @@ public class AuthFilter implements Filter {
 			User user = (User)userAttr;
 			if (user.logged_in) {
 				response.sendRedirect("/Lab/SiteContentServlet");
-				System.out.println("И сделал редирект");
+				//System.out.println("И сделал редирект");
 			}
 		} else {
 			chain.doFilter(req, (ServletResponse)response);

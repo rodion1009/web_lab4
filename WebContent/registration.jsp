@@ -11,11 +11,13 @@
 		<b>Please, enter new login and password</b>
 		<br>
 		<b>Login</b>
-		<input type="text" id="NameInput" name="login" />
+		<input type="text" name="login" id="NameInput" />
 		<br>
 		<b>Password</b>
 		<input type="text" name="password" id="PasswordInput" />
 		<br>
+		<input type="radio" name="type" value="common" checked>Обычный пользователь<br>
+		<input type="radio" name="type" value="admin">Администратор<br>
 		<input type="submit" value="Send" />
 	</form>
 </body>

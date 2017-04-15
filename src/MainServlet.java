@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  * Servlet implementation class MainServlet
  */
@@ -32,10 +33,16 @@ public class MainServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login").toString();
 		String password = request.getParameter("password").toString();
+		String type = request.getParameter("type").toString();
 		
-		File f = new File("data.txt");
-		FileWriter writer = new FileWriter(f);
-		writer.write(login + "\n" + password + "\n");
+		System.out.println(type);
+		
+		File f = new File("/Users/rodion/Documents/workspace/Lab/data.txt");
+		FileWriter writer = new FileWriter(f, true);
+		BufferedWriter buffWriter = new BufferedWriter(writer);
+		buffWriter.write(login + "\n" + password + "\n" + type + "\n");
+		
+		buffWriter.close();
 		writer.close();
 		
 		getServletConfig().getServletContext().getRequestDispatcher("/regComplete.jsp").forward(request, response);

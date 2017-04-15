@@ -3,6 +3,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.mirea.web.*;
 
 /**
  * Servlet implementation class AuthentificationServlet
@@ -34,20 +35,28 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		String loginFromFile;
 		String passwordFromFile;
+		String type;
 		
-		File f = new File("data.txt");
+		File f = new File("/Users/rodion/Documents/workspace/Lab/data.txt");
 		FileReader r = new FileReader(f);
 		BufferedReader reader = new BufferedReader(r);
 		loginFromFile = reader.readLine();
+		while (!loginFromFile.equals(loginFromForm)) {
+			reader.readLine();
+			reader.readLine();
+			loginFromFile = reader.readLine();
+		}
 		passwordFromFile = reader.readLine();
+		type = reader.readLine();
 		reader.close();
+		r.close();
 		
 		Writer writer = response.getWriter();
 		
 		if(loginFromForm.equals(loginFromFile) && passwordFromForm.equals(passwordFromFile)) {
 			User user = new User();
 			user.logged_in = true;
-			user.type = User.Type.common; //Пока нет возможности выбирать
+			user.type = type;
 			
 			request.getSession().setAttribute("user", user); //добавить в сессию информацию о том, что пользователь уже залогинен
 			//getServletConfig().getServletContext().getRequestDispatcher("/SiteContentServlet").forward(request, response);
