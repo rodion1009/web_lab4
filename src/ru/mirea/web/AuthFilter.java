@@ -1,5 +1,5 @@
+package ru.mirea.web;
 import java.io.IOException;
-import ru.mirea.web.*;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -29,6 +29,7 @@ public class AuthFilter implements Filter {
 			User user = (User)userAttr;
 			if (user.logged_in) {
 				response.sendRedirect("/Lab/SiteContentServlet");
+				return;
 				//System.out.println("И сделал редирект");
 			}
 		} else {

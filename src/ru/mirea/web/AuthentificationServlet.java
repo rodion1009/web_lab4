@@ -1,9 +1,9 @@
+package ru.mirea.web;
 import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ru.mirea.web.*;
 
 /**
  * Servlet implementation class AuthentificationServlet

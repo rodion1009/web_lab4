@@ -1,3 +1,4 @@
+package ru.mirea.web;
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -7,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
-import ru.mirea.web.*;
 
 public class SecurityFilter implements Filter {
 
@@ -23,8 +22,17 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)req;
 		User user = (User)request.getSession().getAttribute("user");
 		if (user != null && user.logged_in) {
-			request.setAttribute("type", user.type);
+			if (user.type.equals("common")) {
+				req.getRequestDispatcher("commonUserSite.jsp").forward(req, resp);
+			} else if (user.type.equals("admin")) {
+				req.getRequestDispatcher("adminSite.jsp").forward(req, resp);
+			} else {
+				resp.getWriter().write("<html><b>An error occur!</b></html>");
+			}
+		} else {
+			req.getRequestDispatcher("authentification.jsp");
 		}
+		System.out.println("Фильтр сработал");
 		chain.doFilter((ServletRequest)request, resp);
 	}
 

@@ -14,7 +14,7 @@
     <description></description>
     <display-name>MainServlet</display-name>
     <servlet-name>MainServlet</servlet-name>
-    <servlet-class>MainServlet</servlet-class>
+    <servlet-class>ru.mirea.web.MainServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MainServlet</servlet-name>
@@ -25,7 +25,7 @@
     <description></description>
     <display-name>AuthentificationServlet</display-name>
     <servlet-name>AuthentificationServlet</servlet-name>
-    <servlet-class>AuthentificationServlet</servlet-class>
+    <servlet-class>ru.mirea.web.AuthentificationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AuthentificationServlet</servlet-name>
@@ -36,7 +36,7 @@
     <description></description>
     <display-name>SiteContentServlet</display-name>
     <servlet-name>SiteContentServlet</servlet-name>
-    <servlet-class>SiteContentServlet</servlet-class>
+    <servlet-class>ru.mirea.web.SiteContentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SiteContentServlet</servlet-name>
@@ -45,7 +45,7 @@
   
   <filter>
   	<filter-name>SecurityFilter</filter-name>
-	<filter-class>SecurityFilter</filter-class>
+	<filter-class>ru.mirea.web.SecurityFilter</filter-class>
   </filter>
   <filter-mapping>
 	<filter-name>SecurityFilter</filter-name>
@@ -54,7 +54,7 @@
   
   <filter>
   	<filter-name>AuthFilter</filter-name>
-	<filter-class>AuthFilter</filter-class>
+	<filter-class>ru.mirea.web.AuthFilter</filter-class>
   </filter>
   <filter-mapping>
 	<filter-name>AuthFilter</filter-name>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.Queue" import = "java.util.ArrayList" import="ru.mirea.web.User"%>
+    pageEncoding="UTF-8" import = "java.util.Queue" import = "java.util.ArrayList" import="ru.mirea.web.User" import="ru.mirea.web.SiteContentServlet"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,12 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean id="userss" class="java.util.ArrayList" scope="request"/> 
 	<% 
-		session.getAttribute("users");
-		Object obj = session.getAttribute("users");
-		ArrayList<User> users = obj == null ? null : (ArrayList<User>)obj;
-		if (obj != null) {
+		ArrayList<User> users = SiteContentServlet.getUsers();
+		if (users != null) {
 	%>
 		<table>
 	<% 	
@@ -24,8 +21,5 @@
 		}
 	%>
 		</table>
-	
-		<!--  <c: foreach items=${users} var="u">
-		<tr><td>login: ${u.login}</td></tr></c:> -->
 </body>
 </html>
