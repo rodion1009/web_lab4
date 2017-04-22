@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class SecurityFilter implements Filter {
 
@@ -30,7 +31,7 @@ public class SecurityFilter implements Filter {
 				resp.getWriter().write("<html><b>An error occur!</b></html>");
 			}
 		} else {
-			req.getRequestDispatcher("authentification.jsp");
+			((HttpServletResponse)resp).sendRedirect("/Lab/AuthentificationServlet");
 		}
 		System.out.println("Фильтр сработал");
 		chain.doFilter((ServletRequest)request, resp);

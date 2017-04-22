@@ -44,13 +44,14 @@ public class SiteContentServlet extends HttpServlet {
 		if (button.equals("Logout")) {
 			request.getSession().removeAttribute("user");
 			//getServletConfig().getServletContext().getRequestDispatcher("/authentification.jsp").forward(request, response);
-			response.sendRedirect("/AuthentificationServlet");
-			return;
+			//response.sendRedirect("/AuthentificationServlet");
+			
 		} else if (button.equals("Delete")) {
 			deleteUser(request, response);
 			//getServletConfig().getServletContext().getRequestDispatcher("/adminSite.jsp").forward(request, response);
-			doGet(request, response);
+			//doGet(request, response);
 		} 
+		doGet(request, response);
 	}
 	
 	public static ArrayList<User> getUsers() throws IOException {

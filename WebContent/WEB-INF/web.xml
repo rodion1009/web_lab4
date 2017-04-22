@@ -42,7 +42,7 @@
     <servlet-name>SiteContentServlet</servlet-name>
     <url-pattern>/SiteContentServlet</url-pattern>
   </servlet-mapping>
-  
+
   <filter>
   	<filter-name>SecurityFilter</filter-name>
 	<filter-class>ru.mirea.web.SecurityFilter</filter-class>

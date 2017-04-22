@@ -24,5 +24,6 @@
 			<br>
 			<input type="submit" name="btn" value="Logout">
 		</form>
+		<a href="SiteContentServlet">Apply changes</a>
 </body>
 </html>

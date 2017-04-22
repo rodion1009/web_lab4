@@ -25,6 +25,7 @@ public class AuthFilter implements Filter {
 		HttpSession session = request.getSession(true);
 		Object userAttr = session.getAttribute("user");
 		HttpServletResponse response = (HttpServletResponse)resp;
+		//System.out.println(request.getHeader("referer"));
 		if (userAttr != null) {
 			User user = (User)userAttr;
 			if (user.logged_in) {
@@ -33,6 +34,7 @@ public class AuthFilter implements Filter {
 				//System.out.println("И сделал редирект");
 			}
 		} else {
+			System.out.println(request.getHeader("referer"));
 			chain.doFilter(req, (ServletResponse)response);
 		}
 	}
