@@ -50,6 +50,8 @@
   <filter-mapping>
 	<filter-name>SecurityFilter</filter-name>
 	<url-pattern>/SiteContentServlet</url-pattern>
+	<url-pattern>/adminSite.jsp</url-pattern>
+	<url-pattern>/commonUserSite.jsp</url-pattern>
   </filter-mapping>
   
   <filter>

@@ -59,7 +59,6 @@ public class AuthentificationServlet extends HttpServlet {
 			user.type = type;
 			
 			request.getSession().setAttribute("user", user); //добавить в сессию информацию о том, что пользователь уже залогинен
-			//getServletConfig().getServletContext().getRequestDispatcher("/SiteContentServlet").forward(request, response);
 			response.sendRedirect("/Lab/SiteContentServlet");
 		} else {
 			writer.write("<html><h1>Wrong login or password<h1><br><a href=\"AuthentificationServlet\">Try again</a></html>");

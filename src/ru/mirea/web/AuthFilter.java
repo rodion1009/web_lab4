@@ -20,21 +20,17 @@ public class AuthFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-		//System.out.println("AuthFilter запустился");
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpSession session = request.getSession(true);
 		Object userAttr = session.getAttribute("user");
 		HttpServletResponse response = (HttpServletResponse)resp;
-		//System.out.println(request.getHeader("referer"));
 		if (userAttr != null) {
 			User user = (User)userAttr;
 			if (user.logged_in) {
 				response.sendRedirect("/Lab/SiteContentServlet");
 				return;
-				//System.out.println("И сделал редирект");
 			}
 		} else {
-			System.out.println(request.getHeader("referer"));
 			chain.doFilter(req, (ServletResponse)response);
 		}
 	}

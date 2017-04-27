@@ -33,7 +33,6 @@ public class SecurityFilter implements Filter {
 		} else {
 			((HttpServletResponse)resp).sendRedirect("/Lab/AuthentificationServlet");
 		}
-		System.out.println("Фильтр сработал");
 		chain.doFilter((ServletRequest)request, resp);
 	}
 

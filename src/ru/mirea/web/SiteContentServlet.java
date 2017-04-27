@@ -40,16 +40,11 @@ public class SiteContentServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String button = request.getParameter("btn").toString();
-		System.out.println(button);
 		if (button.equals("Logout")) {
 			request.getSession().removeAttribute("user");
-			//getServletConfig().getServletContext().getRequestDispatcher("/authentification.jsp").forward(request, response);
-			//response.sendRedirect("/AuthentificationServlet");
 			
 		} else if (button.equals("Delete")) {
 			deleteUser(request, response);
-			//getServletConfig().getServletContext().getRequestDispatcher("/adminSite.jsp").forward(request, response);
-			//doGet(request, response);
 		} 
 		doGet(request, response);
 	}
