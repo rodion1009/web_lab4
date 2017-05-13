@@ -9,7 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
     <description></description>
     <display-name>MainServlet</display-name>
@@ -20,7 +19,6 @@
     <servlet-name>MainServlet</servlet-name>
     <url-pattern>/MainServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>AuthentificationServlet</display-name>
@@ -31,7 +29,6 @@
     <servlet-name>AuthentificationServlet</servlet-name>
     <url-pattern>/AuthentificationServlet</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>SiteContentServlet</display-name>
@@ -42,26 +39,33 @@
     <servlet-name>SiteContentServlet</servlet-name>
     <url-pattern>/SiteContentServlet</url-pattern>
   </servlet-mapping>
-
   <filter>
-  	<filter-name>SecurityFilter</filter-name>
-	<filter-class>ru.mirea.web.SecurityFilter</filter-class>
+    <filter-name>SecurityFilter</filter-name>
+    <filter-class>ru.mirea.web.SecurityFilter</filter-class>
   </filter>
   <filter-mapping>
-	<filter-name>SecurityFilter</filter-name>
-	<url-pattern>/SiteContentServlet</url-pattern>
-	<url-pattern>/adminSite.jsp</url-pattern>
-	<url-pattern>/commonUserSite.jsp</url-pattern>
+    <filter-name>SecurityFilter</filter-name>
+    <url-pattern>/SiteContentServlet</url-pattern>
+    <url-pattern>/adminSite.jsp</url-pattern>
+    <url-pattern>/commonUserSite.jsp</url-pattern>
   </filter-mapping>
-  
   <filter>
-  	<filter-name>AuthFilter</filter-name>
-	<filter-class>ru.mirea.web.AuthFilter</filter-class>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>ru.mirea.web.AuthFilter</filter-class>
   </filter>
   <filter-mapping>
-	<filter-name>AuthFilter</filter-name>
-	<url-pattern>/MainServlet</url-pattern>
-	<url-pattern>/AuthentificationServlet</url-pattern>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/MainServlet</url-pattern>
+    <url-pattern>/AuthentificationServlet</url-pattern>
   </filter-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>MessagesServlet</display-name>
+    <servlet-name>MessagesServlet</servlet-name>
+    <servlet-class>ru.mirea.web.MessagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MessagesServlet</servlet-name>
+    <url-pattern>/MessagesServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

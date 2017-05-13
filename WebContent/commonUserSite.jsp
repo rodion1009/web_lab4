@@ -25,5 +25,7 @@
 			<input type="submit" name="btn" value="Logout">
 		</form>
 		<a href="SiteContentServlet">Apply changes</a>
+		<br>
+		<a href="messages.jsp">Leave a comment</a>
 </body>
 </html>

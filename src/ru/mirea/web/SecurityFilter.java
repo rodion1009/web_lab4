@@ -24,9 +24,10 @@ public class SecurityFilter implements Filter {
 		User user = (User)request.getSession().getAttribute("user");
 		if (user != null && user.logged_in) {
 			if (user.type.equals("common")) {
-				req.getRequestDispatcher("commonUserSite.jsp").forward(req, resp);
+				request.getRequestDispatcher("commonUserSite.jsp").forward(request, resp);
+				
 			} else if (user.type.equals("admin")) {
-				req.getRequestDispatcher("adminSite.jsp").forward(req, resp);
+				request.getRequestDispatcher("adminSite.jsp").forward(request, resp);
 			} else {
 				resp.getWriter().write("<html><b>An error occur!</b></html>");
 			}
